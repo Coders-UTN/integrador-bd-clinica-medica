@@ -1,4 +1,15 @@
 # Proyecto Integrador: Diseño y Modelado de Base de Datos para Clínica Médica
+---
+**Base de Datos TUP Comision 3**
+
+**Profesor:** Quiros Nicolas
+
+**Integrantes:**
+* Aciar, Agustín
+* Flores, Leandro
+* Franco, Camila
+* Ramírez, Rodrigo
+* Vera, Santiago
 
 ---
 
