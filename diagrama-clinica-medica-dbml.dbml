@@ -80,10 +80,12 @@ Table evolucion_clinica {
 	id_evolucion integer [ pk, increment, not null, unique ]
 	id_paciente integer [ not null ]
 	id_medico integer [ not null ]
+	id_obra_social integer [ not null ]
+	numero_afiliado varchar [ not null ]
 	fecha date [ not null ]
 	hora time [ not null ]
-	motivo_consulta varchar(255)
-	diagnostico text
+	motivo_consulta varchar(255) [ not null ]
+	diagnostico text [ not null ]
 	tratamiento text
 	notas_adicionales text
 }
@@ -146,4 +148,8 @@ Ref se registra {
 
 Ref se afilia {
 	afiliacion_obra_social.id_paciente > paciente.id_paciente [ delete: no action, update: no action ]
+}
+
+Ref se factura con {
+	obras_social.id_obra_social - evolucion_clinica.id_obra_social [ delete: no action, update: no action ]
 }
