@@ -1,0 +1,82 @@
+Table paciente {
+  id_paciente int [pk]
+  dni varchar(15)
+  nombre varchar(50)
+  apellido varchar(50)
+  email varchar(100)
+  telefono varchar(20)
+  direccion varchar(100)
+  id_obra_social int
+  nro_afiliado varchar(30)
+}
+
+Table medico {
+  id_medico int [pk]
+  matricula varchar(20)
+  tipo_matricula enum('nacional', 'provincial')
+  apellido varchar(50)
+  dni varchar(15)
+  nombre varchar(50)
+  telefono varchar(20)
+  email varchar(100)
+  fecha_ingreso date
+  activo boolean
+  id_especialidad int
+}
+
+Table secretario {
+  id_secretario int [pk]
+  id_sede int
+  apellido varchar(50)
+  nombre varchar(50)
+  telefono varchar(20)
+  email varchar(100)
+}
+
+Table estado {
+  id_estado int [pk]
+  nombre varchar(50)
+  descripcion varchar(255)
+}
+
+Table especialidad {
+  id_especialidad int [pk]
+  nombre varchar(50)
+  duracion_consulta_promedio int
+  requiere_equipo_especial boolean
+}
+
+
+
+Table turno {
+  id_turno int [pk]
+  id_paciente int
+  id_medico int
+  id_secretario int
+  id_estado int
+  id_sede int
+  fecha_id date
+  hora time
+  motivo varchar(100)
+  observaciones text
+}
+
+Table evoluciones_clinicas {
+  id_evolucion int [pk]
+  id_paciente int
+  id_medico int
+  fecha_id date
+  tipo_evolucion enum('consulta', 'control', 'urgencia')
+  motivo varchar(100)
+  observaciones text
+}
+
+Ref: turno.id_paciente > paciente.id_paciente
+Ref: turno.id_medico > medico.id_medico
+Ref: turno.id_secretario > secretario.id_secretario
+Ref: turno.id_estado > estado.id_estado
+
+Ref: evoluciones_clinicas.id_paciente > paciente.id_paciente
+Ref: evoluciones_clinicas.id_medico > medico.id_medico
+
+Ref: medico.id_especialidad > especialidad.id_especialidad
